@@ -15,10 +15,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
 
-  // constructor(
-  //   private commonModule: CommonModule,
-  //   private browserAnimationsModule: BrowserAnimationsModule,) {
-  // }
+
 
   title = 'basic-chart';
 
