@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { CalendarModule } from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import the BrowserAnimationsModule
@@ -9,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule, CalendarModule, FormsModule],
+  imports: [ RouterModule, CalendarModule, FormsModule],
   selector: 'widget-collection-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
