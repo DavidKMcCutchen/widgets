@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Set a branch to deploy from
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # You can specify your Node.js version here
+
+    - name: Cache Node Modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: Install Dependencies
+      run: npm install
+    
+    - name: Nx Build
+      run: npx nx build basic-chart --prod  # Replace "basic-chart" with your actual project name if different
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+        branch: gh-pages  # The branch the action should deploy to.
+        folder: dist/apps/basic-chart  # The folder the action should deploy.
+        clean: true  # Automatically remove deleted files from the deploy branch
